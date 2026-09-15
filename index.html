@@ -27,6 +27,7 @@
     --nav-fg: var(--paper);
   }
 
+  html{ scroll-behavior:smooth; }
   *{ box-sizing:border-box; }
   body{
     margin:0;
@@ -59,29 +60,31 @@
   /* ---------- Nav ---------- */
   header{
     position:sticky; top:0; z-index:50;
-    background:color-mix(in srgb, var(--navy) 94%, transparent);
-    backdrop-filter:blur(8px);
-    border-bottom:1px solid rgba(255,255,255,0.08);
+    background:var(--bg);
+    border-bottom:1px solid var(--border);
     margin-inline:-20px; padding-inline:20px;
   }
 
   .navrow{
     display:flex; align-items:center; justify-content:space-between;
-    gap:16px; padding-block:14px; color:var(--nav-fg);
+    gap:12px; padding-block:14px; color:var(--fg); flex-wrap:wrap;
   }
-  .brandmark{ display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--nav-fg); }
+  @media (max-width:420px){
+    nav.links{ gap:14px; font-size:0.78rem; }
+    .navcta{ padding:8px 14px; font-size:0.76rem; }
+  }
+  .brandmark{ display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--fg); }
   .mark-chip{
-    display:flex; align-items:center; background:var(--paper);
-    border-radius:8px; padding:6px 10px; flex:none;
+    display:flex; align-items:center;
   }
   .mark{
-    height:20px; width:auto; flex:none; display:block;
+    height:26px; width:auto; flex:none; display:block;
   }
   .brand-text{ display:flex; flex-direction:column; line-height:1.05; }
-  .brand-text .en{ font-family:'Cairo',sans-serif; font-weight:600; font-size:0.62rem; letter-spacing:0.22em; opacity:0.75; }
+  .brand-text .en{ font-family:'Cairo',sans-serif; font-weight:600; font-size:0.62rem; letter-spacing:0.22em; opacity:0.6; }
 
   nav.links{ display:flex; gap:26px; font-family:'Cairo',sans-serif; font-size:0.86rem; font-weight:600; }
-  nav.links a{ color:var(--nav-fg); text-decoration:none; opacity:0.82; transition:opacity .15s; }
+  nav.links a{ color:var(--fg); text-decoration:none; opacity:0.75; transition:opacity .15s; }
   nav.links a:hover, nav.links a:focus-visible{ opacity:1; color:var(--accent); }
   .navcta{
     font-family:'Cairo',sans-serif; font-weight:700; font-size:0.82rem;
@@ -89,12 +92,13 @@
     text-decoration:none; white-space:nowrap; transition:transform .15s, filter .15s;
   }
   .navcta:hover{ transform:translateY(-1px); filter:brightness(1.06); }
-  @media (max-width:760px){ nav.links{ display:none; } }
 
   /* ---------- Hero ---------- */
   .hero{
-    padding-block:64px 56px;
-    display:grid; gap:28px;
+    padding-block:72px 56px;
+    display:grid; gap:22px;
+    justify-items:center;
+    text-align:center;
     animation:rise .7s ease-out both;
   }
   @keyframes rise{ from{ opacity:0; transform:translateY(14px);} to{ opacity:1; transform:none; } }
@@ -106,26 +110,30 @@
     color:var(--fg);
   }
   .hero-logo{
-    height:clamp(56px, 9vw, 88px);
+    height:clamp(120px, 22vw, 220px);
     width:auto;
     display:block;
-    background:var(--paper);
-    border-radius:16px;
-    padding:14px 22px;
-    margin-inline-start:-22px;
+    margin-inline:auto;
+  }
+  .hero-fullname{
+    font-family:'Cairo',sans-serif; font-weight:600; letter-spacing:0.16em;
+    text-transform:uppercase;
+    font-size:0.8rem;
+    color:var(--accent);
+    margin:2px 0 0;
   }
   .hero-sub{
     font-family:'Cairo',sans-serif; font-weight:600; letter-spacing:0.02em;
     font-size:clamp(1.15rem, 2.6vw, 1.55rem);
     color:var(--fg-soft);
-    margin:6px 0 0;
+    margin:0;
   }
   .hero-lede{
     max-width:60ch;
     font-size:1.12rem;
     color:var(--fg-soft);
   }
-  .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; margin-top:4px; }
+  .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; margin-top:4px; justify-content:center; }
   .btn{
     font-family:'Cairo',sans-serif; font-weight:700; font-size:0.92rem;
     padding:13px 26px; border-radius:999px; text-decoration:none;
@@ -139,94 +147,43 @@
 
   .hero-strip{
     margin-top:18px;
-    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
-    background:var(--border); border:1px solid var(--border); border-radius:14px; overflow:hidden;
+    background:var(--card); border:1px solid var(--border); border-radius:14px;
+    width:100%; max-width:560px;
+    padding:22px 32px;
+    display:flex; align-items:center; justify-content:center; gap:14px;
+    text-align:center;
   }
-  .hero-strip div{ background:var(--card); padding:16px 18px; }
-  .hs-num{ font-family:'Cairo',sans-serif; font-weight:800; font-size:1.5rem; color:var(--accent); font-variant-numeric:tabular-nums; }
-  .hs-label{ font-size:0.86rem; color:var(--fg-soft); margin-top:2px; }
-  @media (max-width:640px){ .hero-strip{ grid-template-columns:1fr; } }
+  .hs-num{ font-family:'Cairo',sans-serif; font-weight:800; font-size:2.8rem; color:var(--accent); font-variant-numeric:tabular-nums; line-height:1; }
+  .hs-label{ font-size:0.92rem; color:var(--fg-soft); }
 
   /* ---------- Section shell ---------- */
-  section{ padding-block:64px; border-top:1px solid var(--border); }
-  .sec-head{ max-width:62ch; margin-bottom:34px; }
+  section{ padding-block:80px; border-top:1px solid var(--border); }
+  .sec-head{ max-width:62ch; margin-bottom:40px; }
   .sec-head h2{ font-size:clamp(1.7rem,3.6vw,2.3rem); margin:6px 0 10px; }
   .sec-head p{ color:var(--fg-soft); margin:0; }
 
-  /* ---------- Mission ---------- */
-  .mission-grid{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:44px; align-items:start; }
-  @media (max-width:760px){ .mission-grid{ grid-template-columns:1fr; } }
-  .mission-grid p{ color:var(--fg-soft); }
-  .pillars{ display:grid; gap:14px; }
-  .pillar{
-    background:var(--card); border:1px solid var(--border); border-radius:14px;
-    padding:18px 20px; display:flex; gap:14px; align-items:flex-start;
+  /* ---------- About / Vision / Mission ---------- */
+  .lang-block{
+    display:grid; grid-template-columns:1fr 1fr; gap:40px;
+    padding-block:38px; border-top:1px solid var(--border);
   }
-  .pillar .num{ font-family:'Cairo',sans-serif; font-weight:800; color:var(--accent-2); font-size:1.1rem; }
-  .pillar h3{ margin:0 0 4px; font-size:1.02rem; }
-  .pillar p{ margin:0; font-size:0.92rem; color:var(--fg-soft); }
-
-  /* ---------- SDG ---------- */
-  .sdg-row{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
-  @media (max-width:760px){ .sdg-row{ grid-template-columns:repeat(2,1fr); } }
-  .sdg{
-    border-radius:14px; padding:20px 18px; color:#fff;
-    display:flex; flex-direction:column; gap:34px; min-height:150px;
-    transition:transform .18s;
+  .lang-block:first-of-type{ border-top:none; padding-top:0; }
+  @media (max-width:760px){ .lang-block{ grid-template-columns:1fr; gap:18px; } }
+  .reveal{ opacity:0; transform:translateY(22px); }
+  .lang-col h3{
+    font-size:1.15rem; margin:0 0 10px; color:var(--accent-2);
   }
-  .sdg:hover{ transform:translateY(-3px); }
-  .sdg .n{ font-family:'Cairo',sans-serif; font-weight:800; font-size:1.5rem; font-variant-numeric:tabular-nums; opacity:0.85; }
-  .sdg .t{ font-family:'Cairo',sans-serif; font-weight:700; font-size:0.98rem; line-height:1.25; }
-  .sdg.c3{ background:#2c9b90; }
-  .sdg.c4{ background:#ff6f52; }
-  .sdg.c11{ background:#16324f; }
-  .sdg.c17{ background:#0f2438; }
-
-  /* ---------- Initiatives ---------- */
-  .init-list{ display:grid; gap:18px; }
-  .init{
-    background:var(--card); border:1px solid var(--border); border-radius:16px;
-    padding:26px 28px; display:grid; grid-template-columns:auto 1fr auto; gap:22px; align-items:center;
-  }
-  @media (max-width:700px){ .init{ grid-template-columns:1fr; } }
-  .init-status{
-    font-family:'Cairo',sans-serif; font-weight:700; font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase;
-    padding:6px 12px; border-radius:999px; white-space:nowrap; justify-self:start;
-  }
-  .status-live{ background:color-mix(in srgb, var(--teal) 22%, transparent); color:var(--teal); }
-  .status-plan{ background:color-mix(in srgb, var(--accent-2) 20%, transparent); color:var(--accent-2); }
-  .init h3{ margin:0 0 6px; font-size:1.2rem; }
-  .init p{ margin:0; color:var(--fg-soft); font-size:0.96rem; max-width:52ch; }
-  .init-sdg{ font-family:'Cairo',sans-serif; font-size:0.78rem; font-weight:700; color:var(--fg-soft); text-align:end; }
-  .init-sdg span{ display:block; color:var(--accent); font-size:0.95rem; }
-
-  /* ---------- Committees ---------- */
-  .comm-row{ display:grid; grid-template-columns:repeat(6,1fr); gap:12px; }
-  @media (max-width:900px){ .comm-row{ grid-template-columns:repeat(3,1fr); } }
-  @media (max-width:520px){ .comm-row{ grid-template-columns:repeat(2,1fr); } }
-  .comm{
-    border:1px solid var(--border); border-radius:12px; padding:18px 14px; text-align:center;
-    background:var(--card);
-  }
-  .comm .ico{ font-family:'Cairo',sans-serif; font-weight:800; font-size:1.3rem; color:var(--accent); }
-  .comm .name{ font-family:'Cairo',sans-serif; font-weight:700; font-size:0.86rem; margin-top:8px; }
+  .lang-col p{ margin:0; color:var(--fg-soft); font-size:1rem; }
+  .lang-col.ar h3{ text-align:right; }
+  .lang-col.ar p{ text-align:right; }
 
   /* ---------- Get involved ---------- */
   .join{
     background:var(--navy); color:var(--paper);
     border-radius:22px; padding:48px clamp(24px,5vw,60px);
-    display:grid; grid-template-columns:1.2fr 1fr; gap:32px; align-items:center;
   }
-  @media (max-width:760px){ .join{ grid-template-columns:1fr; } }
   .join h2{ margin:0 0 10px; font-size:clamp(1.6rem,3.4vw,2.1rem); color:#fff; }
   .join p{ color:#c9d3d8; margin:0 0 20px; max-width:48ch; }
-  .join-card{
-    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14);
-    border-radius:16px; padding:22px 24px;
-  }
-  .join-card .lab{ font-family:'Cairo',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); }
-  .join-card .val{ font-family:'Cairo',sans-serif; font-weight:700; font-size:1.05rem; margin:4px 0 16px; color:#fff; }
-  .join-card .val:last-child{ margin-bottom:0; }
 
   footer{
     padding-block:34px 50px; display:flex; justify-content:space-between; align-items:center;
@@ -239,15 +196,9 @@
   <div class="wrap navrow">
     <a class="brandmark" href="#top">
       <span class="mark-chip"><img class="mark" src="aim-logo.png" alt="AIM" /></span>
-      <span class="brand-text">
-        <span class="en">PSU CHARITY CLUB</span>
-      </span>
     </a>
     <nav class="links">
-      <a href="#mission">Mission</a>
-      <a href="#sdgs">SDGs</a>
-      <a href="#initiatives">Initiatives</a>
-      <a href="#committees">Committees</a>
+      <a href="#about">WHO WE ARE</a>
     </nav>
     <a class="navcta" href="#join">Get Involved</a>
   </div>
@@ -258,120 +209,64 @@
   <section class="hero" style="border-top:none; padding-top:56px;">
     <p class="eyebrow">Prince Sultan University · Student Club</p>
     <img src="aim-logo.png" alt="AIM" class="hero-logo" />
+    <p class="hero-fullname">Alliance In Motion</p>
     <p class="hero-sub">Where care on campus meets impact beyond it.</p>
-    <p class="hero-lede">AIM is PSU's newest volunteer and charity club — built on one belief: student generosity shouldn't have to choose between home and the world. We run welfare projects inside our own community and service initiatives beyond it, and we tie every one of them to a UN Sustainable Development Goal so impact is something we can actually measure.</p>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="#join">Join a committee →</a>
-      <a class="btn btn-ghost" href="#initiatives">See our initiatives</a>
+      <a class="btn btn-primary" href="#join">Get involved →</a>
     </div>
     <div class="hero-strip">
-      <div><div class="hs-num">2</div><div class="hs-label">Focus areas — campus &amp; community</div></div>
-      <div><div class="hs-num">4</div><div class="hs-label">SDGs anchoring our work</div></div>
-      <div><div class="hs-num">6</div><div class="hs-label">Committees running the club</div></div>
+      <div><div class="hs-num">17</div><div class="hs-label">SDGs in scope</div></div>
     </div>
   </section>
 
-  <section id="mission">
+  <section id="about">
     <div class="sec-head">
-      <p class="eyebrow">Why AIM exists</p>
-      <h2>One club, two directions of impact.</h2>
-      <p>Most student charity efforts point outward. AIM points both ways — inward, toward the people who keep PSU running, and outward, toward the communities around us — and grounds every project in a clear, trackable goal.</p>
+      <p class="eyebrow">Who we are</p>
+      <h2>About, vision, and mission.</h2>
     </div>
-    <div class="mission-grid">
-      <p style="font-size:1.05rem;">
-        We started AIM because volunteering at PSU tended to mean one of two things: a single external donation drive, or nothing organized at all. There was no club treating <em>campus welfare</em> — the people and routines that hold university life together — as worthy of the same care as outreach beyond the gates.
-        <br><br>
-        So AIM runs both. Every initiative we plan is scoped, budgeted, and mapped to a Sustainable Development Goal before it launches — so "impact" is never just a word on a poster.
-      </p>
-      <div class="pillars">
-        <div class="pillar"><span class="num">01</span><div><h3>Internal welfare</h3><p>Projects for the people and spaces that make PSU work day to day.</p></div></div>
-        <div class="pillar"><span class="num">02</span><div><h3>External service</h3><p>Partnerships that carry student energy into the wider community.</p></div></div>
-        <div class="pillar"><span class="num">03</span><div><h3>Measured impact</h3><p>Every initiative maps to an SDG, with a real goal behind it.</p></div></div>
-      </div>
-    </div>
-  </section>
 
-  <section id="sdgs">
-    <div class="sec-head">
-      <p class="eyebrow">Grounded in a framework</p>
-      <h2>The four SDGs behind our work.</h2>
-      <p>Each initiative AIM runs is chosen to move the needle on one of these — not as a label, but as the reason it exists.</p>
+    <div class="lang-block reveal">
+      <div class="lang-col en">
+        <h3>About Us</h3>
+        <p>AIM is a student-led club at Prince Sultan University that brings together students who want to make a meaningful difference, both on campus and beyond. We believe giving back goes beyond the university gates — from supporting the people who make our university feel like home to extending our impact wherever it's needed, we create opportunities for students to turn their ideas, energy, and compassion into action. Guided by the UN Sustainable Development Goals, every initiative we take on has a purpose — bringing students together, creating meaningful experiences, and making an impact that lasts.</p>
+      </div>
+      <div class="lang-col ar arabic">
+        <h3>من نحن</h3>
+        <p>تحالف الأثر (AIM) نادٍ طلابي بجامعة الأمير سلطان يقوده الطلاب أنفسهم، يجمع بين من يسعون لإحداث فرق حقيقي، داخل الحرم الجامعي وخارجه. نؤمن بأن العطاء لا يتوقف عند أسوار الجامعة — فمن دعم من يجعلون جامعتنا تشعرنا بالانتماء، إلى مد أثرنا إلى حيث تدعو الحاجة، نخلق الفرص للطلاب لتحويل أفكارهم وطاقتهم وتعاطفهم إلى عمل ملموس. واسترشادًا بأهداف التنمية المستدامة للأمم المتحدة، لكل مبادرة نقوم بها هدف واضح — تجمع الطلاب، وتخلق تجارب ذات معنى، وتترك أثرًا يدوم.</p>
+      </div>
     </div>
-    <div class="sdg-row">
-      <div class="sdg c3"><span class="n">03</span><span class="t">Good Health &amp; Well-Being</span></div>
-      <div class="sdg c4"><span class="n">10</span><span class="t">Reduced Inequalities</span></div>
-      <div class="sdg c11"><span class="n">08</span><span class="t">Decent Work — for the staff behind campus life</span></div>
-      <div class="sdg c17"><span class="n">17</span><span class="t">Partnerships for the Goals</span></div>
-    </div>
-  </section>
 
-  <section id="initiatives">
-    <div class="sec-head">
-      <p class="eyebrow">On the ground</p>
-      <h2>What we're building this year.</h2>
-      <p>A mix of flagship events and ongoing efforts — some already approved and in motion, others in active planning with the Deanship.</p>
-    </div>
-    <div class="init-list">
-      <div class="init">
-        <span class="init-status status-live">Approved</span>
-        <div>
-          <h3>Kidtopia</h3>
-          <p>A day of joy, play, and connection for orphaned children ages 5–13 — built around games, activities, and moments meant to become real memories.</p>
-        </div>
-        <div class="init-sdg">Maps to<span>SDG 10</span></div>
+    <div class="lang-block reveal">
+      <div class="lang-col en">
+        <h3>Vision</h3>
+        <p>We envision Prince Sultan University students uniting to make giving back a habit, not an event — creating meaningful, lasting impact on campus and beyond. That's the culture AIM inspires to build.</p>
       </div>
-      <div class="init">
-        <span class="init-status status-live">Approved</span>
-        <div>
-          <h3>Clean Hearts, Clean Campus</h3>
-          <p>An appreciation initiative for PSU's cleaning staff — recognizing the people who keep our campus running, and rarely get thanked for it.</p>
-        </div>
-        <div class="init-sdg">Maps to<span>SDG 08</span></div>
-      </div>
-      <div class="init">
-        <span class="init-status status-plan">In planning</span>
-        <div>
-          <h3>Community health &amp; giving drives</h3>
-          <p>We're working with the Deanship of Student Affairs on a partnership-based model for health and donation initiatives — details to follow as plans are finalized.</p>
-        </div>
-        <div class="init-sdg">Maps to<span>SDG 03</span></div>
+      <div class="lang-col ar arabic">
+        <h3>رؤيتنا</h3>
+        <p>نتطلع إلى أن يتحد طلاب جامعة الأمير سلطان لجعل العطاء عادة لا مناسبة عابرة — مما يخلق أثرًا حقيقيًا ودائمًا داخل الحرم الجامعي وخارجه. هذه هي الثقافة التي يسعى تحالف الأثر إلى بنائها.</p>
       </div>
     </div>
-  </section>
 
-  <section id="committees">
-    <div class="sec-head">
-      <p class="eyebrow">How the club runs</p>
-      <h2>Six committees, one club.</h2>
-      <p>Every member sits on a committee built around a real skill set — this is where you'd plug in.</p>
-    </div>
-    <div class="comm-row">
-      <div class="comm"><div class="ico">EX</div><div class="name">Executive</div></div>
-      <div class="comm"><div class="ico">EP</div><div class="name">Events &amp; Programs</div></div>
-      <div class="comm"><div class="ico">MD</div><div class="name">Media</div></div>
-      <div class="comm"><div class="ico">PT</div><div class="name">Partnerships</div></div>
-      <div class="comm"><div class="ico">FN</div><div class="name">Finance</div></div>
-      <div class="comm"><div class="ico">HR</div><div class="name">HR</div></div>
+    <div class="lang-block reveal">
+      <div class="lang-col en">
+        <h3>Mission</h3>
+        <p>Our mission is to create a community and opportunities for PSU students to take part in service, both on campus and beyond. Along the way, students plan, organize, and lead every initiative themselves — building the skills to turn good intentions into action that lasts, through regular work aligned with the UN Sustainable Development Goals.</p>
+      </div>
+      <div class="lang-col ar arabic">
+        <h3>رسالتنا</h3>
+        <p>رسالتنا هي بناء مجتمع وفرص لطلاب جامعة الأمير سلطان للمشاركة في العمل التطوعي، داخل الحرم الجامعي وخارجه. وفي هذا المسار، يخطط الطلاب لكل مبادرة وينظمونها ويقودونها بأنفسهم — مكتسبين المهارات التي تُحوّل النوايا الطيبة إلى عمل مستمر، من خلال عمل منتظم يتماشى مع أهداف التنمية المستدامة للأمم المتحدة.</p>
+      </div>
     </div>
   </section>
 
   <section id="join" style="padding-block:56px 70px;">
-    <div class="join">
+    <div class="join reveal">
       <div>
         <p class="eyebrow" style="color:var(--accent-2);">Get involved</p>
-        <h2>Bring your energy to AIM.</h2>
-        <p>Whether you plan events, tell stories, manage partnerships, or keep the books — there's a committee for it. New members join each semester through PSU's official club channels.</p>
+        <h2>Join us to aim for change, to put it in motion.</h2>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#top">Contact the club →</a>
+          <a class="btn btn-primary" href="#top">Apply Now →</a>
         </div>
-      </div>
-      <div class="join-card">
-        <div class="lab">Affiliation</div>
-        <div class="val">عمادة شؤون الطلاب · Deanship of Student Affairs</div>
-        <div class="lab">Category</div>
-        <div class="val">التوعية والمسؤولية المجتمعية</div>
-        <div class="lab">Based at</div>
-        <div class="val">Prince Sultan University, Riyadh</div>
       </div>
     </div>
   </section>
@@ -382,3 +277,30 @@
   <span class="fmark">AIM</span>
   <span>A Prince Sultan University student club · التوعية والمسؤولية المجتمعية</span>
 </footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (window.gsap && window.ScrollTrigger && !prefersReduced) {
+    gsap.registerPlugin(ScrollTrigger);
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          once: true
+        }
+      });
+    });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      el.style.opacity = 1;
+      el.style.transform = 'none';
+    });
+  }
+</script>
