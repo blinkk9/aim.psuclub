@@ -325,6 +325,7 @@
 </head>
 <body>
 
+
 <header>
   <div class="wrap navrow">
     <a class="brandmark" href="#top">
@@ -462,60 +463,76 @@
     <p class="modal-sub">Fill this in and we'll follow up with next steps.</p>
 
     <form id="applyForm">
-  <div class="field">
-    <label for="f-name">Full name</label>
-    <input id="f-name" name="name" type="text" required />
-  </div>
-  <div class="field">
-    <label for="f-phone">Phone number</label>
-    <input id="f-phone" name="phone_number" type="tel" required />
-  </div>
-  <div class="field">
-    <label for="f-email">PSU email</label>
-    <input id="f-email" name="email" type="email" required />
-  </div>
-  <div class="field-row">
-    <div class="field">
-      <label for="f-major">Major</label>
-      <input id="f-major" name="major" type="text" required />
-    </div>
-    <div class="field">
-      <label for="f-year">Year</label>
-      <select id="f-year" name="year_level" required>
-        <option value="" disabled selected>Select</option>
-        <option>First</option>
-        <option>Second</option>
-        <option>Third</option>
-        <option>Fourth</option>
-        <option>Fifth</option>
-        <option>Sixth+</option>
-      </select>
-    </div>
-  </div>
-  <div class="field">
-    <label for="f-committee">Committee preference</label>
-    <select id="f-committee" name="committee_choice" required>
-      <option value="" disabled selected>Select</option>
-      <option>Events & Programs</option>
-      <option>Media</option>
-      <option>Partnerships</option>
-      <option>Finance & Admin</option>
-      <option>HR</option>
-      <option>No preference</option>
-    </select>
-  </div>
-  <div class="field">
-    <label for="f-experience">Past experience (if any)</label>
-    <textarea id="f-experience" name="past_experience" rows="2"></textarea>
-  </div>
-  <div class="field">
-    <label for="f-why">What will you bring to the club?</label>
-    <textarea id="f-why" name="why_join" rows="3" required></textarea>
-  </div>
+      <div class="field">
+        <label for="f-name">Full name</label>
+        <input id="f-name" name="name" type="text" required />
+      </div>
+      <div class="field">
+        <label for="f-phone">Phone number</label>
+        <input id="f-phone" name="phone_number" type="tel" required />
+      </div>
+      <div class="field">
+        <label for="f-email">PSU email</label>
+        <input id="f-email" name="email" type="email" required />
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="f-college">College</label>
+          <select id="f-college" required>
+            <option value="" disabled selected>Select</option>
+            <option>College of Computer and Information Sciences</option>
+            <option>College of Engineering</option>
+            <option>College of Business Administration</option>
+            <option>College of Architecture and Design</option>
+            <option>College of Humanities and Sciences</option>
+            <option>College of Law</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-major">Major</label>
+          <select id="f-major" name="major" required disabled>
+            <option value="" disabled selected>Select college first</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="f-year">Year</label>
+          <select id="f-year" name="year_level" required>
+            <option value="" disabled selected>Select</option>
+            <option>First</option>
+            <option>Second</option>
+            <option>Third</option>
+            <option>Fourth</option>
+            <option>Fifth</option>
+            <option>Sixth+</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-committee">Committee preference</label>
+          <select id="f-committee" name="committee_choice" required>
+            <option value="" disabled selected>Select</option>
+            <option>Events & Programs</option>
+            <option>Media</option>
+            <option>Partnerships</option>
+            <option>Finance & Admin</option>
+            <option>HR</option>
+            <option>No preference</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-experience">Past experience (if any)</label>
+        <textarea id="f-experience" name="past_experience" rows="2"></textarea>
+      </div>
+      <div class="field">
+        <label for="f-why">What will you bring to the club?</label>
+        <textarea id="f-why" name="why_join" rows="3" required></textarea>
+      </div>
 
-  <button type="submit" class="btn btn-primary" id="applySubmitBtn">Submit application</button>
-  <p class="form-status" id="applyStatus"></p>
-</form>
+      <button type="submit" class="btn btn-primary" id="applySubmitBtn">Submit application</button>
+      <p class="form-status" id="applyStatus"></p>
+    </form>
   </div>
 </div>
 
@@ -590,6 +607,34 @@
   window.addEventListener('scroll', toggleBackToTop, { passive: true });
   toggleBackToTop();
 
+  // ---------- College -> Major cascading select ----------
+  var MAJORS_BY_COLLEGE = {
+    'College of Computer and Information Sciences': ['Computer Science', 'Information Systems', 'Software Engineering'],
+    'College of Engineering': ['Civil and Environmental Engineering', 'Electrical Engineering', 'Production & Manufacturing Engineering Management', 'Communications & Networks Engineering', 'Construction Engineering'],
+    'College of Business Administration': ['Aviation Management', 'Accounting', 'Marketing', 'Finance'],
+    'College of Architecture and Design': ['Architecture', 'Interior Design'],
+    'College of Humanities and Sciences': ['Translation', 'Applied Linguistics'],
+    'College of Law': ['Law']
+  };
+  var collegeSelect = document.getElementById('f-college');
+  var majorSelect = document.getElementById('f-major');
+  collegeSelect.addEventListener('change', function(){
+    var majors = MAJORS_BY_COLLEGE[collegeSelect.value] || [];
+    majorSelect.innerHTML = '';
+    var placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    placeholder.textContent = 'Select';
+    majorSelect.appendChild(placeholder);
+    majors.forEach(function(m){
+      var opt = document.createElement('option');
+      opt.textContent = m;
+      majorSelect.appendChild(opt);
+    });
+    majorSelect.disabled = majors.length === 0;
+  });
+
   var form = document.getElementById('applyForm');
   var statusEl = document.getElementById('applyStatus');
   var submitBtn = document.getElementById('applySubmitBtn');
@@ -600,16 +645,16 @@
     statusEl.textContent = 'Submitting…';
     statusEl.className = 'form-status';
 
-  var data = {
-  Name: form.name.value.trim(),
-  phone_number: form.phone_number.value.trim(),
-  email: form.email.value.trim(),
-  major: form.major.value.trim(),
-  Year_level: form.year_level.value,
-  committee_choice: form.committee_choice.value,
-  Past_expierence: form.past_experience.value.trim(),
-  Why_join: form.why_join.value.trim()
-};
+    var data = {
+      Name: form.name.value.trim(),
+      phone_number: form.phone_number.value.trim(),
+      email: form.email.value.trim(),
+      major: form.major.value.trim(),
+      Year_level: form.year_level.value,
+      committee_choice: form.committee_choice.value,
+      Past_expierence: form.past_experience.value.trim(),
+      Why_join: form.why_join.value.trim()
+    };
 
     fetch(SUPABASE_URL + '/rest/v1/Applications', {
       method: 'POST',
