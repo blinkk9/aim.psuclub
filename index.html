@@ -198,6 +198,55 @@
     gap:14px; flex-wrap:wrap; color:var(--fg-soft); font-size:0.85rem;
   }
   footer .fmark{ font-family:'Cairo',sans-serif; font-weight:700; color:var(--fg); }
+
+  /* ---------- Apply modal ---------- */
+  .modal-backdrop{
+    position:fixed; inset:0; background:rgba(10,24,38,0.55);
+    display:flex; align-items:center; justify-content:center;
+    padding:20px; z-index:200; opacity:0; pointer-events:none;
+    transition:opacity .2s ease;
+  }
+  .modal-backdrop.open{ opacity:1; pointer-events:auto; }
+  .modal{
+    background:var(--card); color:var(--fg); border-radius:18px;
+    width:100%; max-width:520px; max-height:88vh; overflow-y:auto;
+    padding:30px clamp(20px,5vw,34px) 32px;
+    transform:translateY(14px); transition:transform .2s ease;
+  }
+  .modal-backdrop.open .modal{ transform:translateY(0); }
+  .modal-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:6px; }
+  .modal-head h2{ margin:2px 0 0; font-size:1.4rem; }
+  .modal-close{
+    background:none; border:none; font-size:1.4rem; line-height:1; cursor:pointer;
+    color:var(--fg-soft); padding:4px 8px; border-radius:8px;
+  }
+  .modal-close:hover{ color:var(--fg); background:var(--bg-2); }
+  .modal p.modal-sub{ color:var(--fg-soft); margin:0 0 22px; font-size:0.95rem; }
+
+  .field{ margin-bottom:16px; }
+  .field label{
+    display:block; font-family:'Cairo',sans-serif; font-weight:600; font-size:0.82rem;
+    margin-bottom:6px; color:var(--fg);
+  }
+  .field input, .field select, .field textarea{
+    width:100%; font-family:'Literata', Georgia, serif; font-size:0.98rem;
+    padding:11px 13px; border-radius:10px; border:1.5px solid var(--border);
+    background:var(--bg); color:var(--fg); resize:vertical;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{
+    outline:none; border-color:var(--accent);
+  }
+  .field-row{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media (max-width:460px){ .field-row{ grid-template-columns:1fr; } }
+
+  .form-status{
+    font-family:'Cairo',sans-serif; font-size:0.88rem; font-weight:600;
+    margin-top:4px; min-height:1.2em;
+  }
+  .form-status.ok{ color:var(--accent); }
+  .form-status.err{ color:var(--accent-2); }
+  .modal .btn-primary{ width:100%; justify-content:center; margin-top:6px; border:none; cursor:pointer; }
+  .modal .btn-primary:disabled{ opacity:0.6; cursor:default; transform:none; }
 </style>
 </head>
 <body>
@@ -275,7 +324,7 @@
         <p class="eyebrow" style="color:var(--accent-2);">Get involved</p>
         <h2>Join us to aim for change, to put it in motion.</h2>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#top">Apply Now →</a>
+          <button type="button" class="btn btn-primary" onclick="openApplyModal()">Apply Now →</button>
         </div>
       </div>
     </div>
@@ -287,6 +336,72 @@
   <span class="fmark">AIM</span>
   <span>A Prince Sultan University student club · التوعية والمسؤولية المجتمعية</span>
 </footer>
+
+<div class="modal-backdrop" id="applyBackdrop">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="applyTitle">
+    <div class="modal-head">
+      <div>
+        <p class="eyebrow" style="margin-bottom:4px;">Apply Now</p>
+        <h2 id="applyTitle">Join AIM</h2>
+      </div>
+      <button type="button" class="modal-close" onclick="closeApplyModal()" aria-label="Close">&times;</button>
+    </div>
+    <p class="modal-sub">Fill this in and we'll follow up with next steps.</p>
+
+    <form id="applyForm">
+      <div class="field">
+        <label for="f-name">Full name</label>
+        <input id="f-name" name="name" type="text" required />
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="f-email">PSU email</label>
+          <input id="f-email" name="email" type="email" required />
+        </div>
+        <div class="field">
+          <label for="f-student-id">Student ID</label>
+          <input id="f-student-id" name="student_id" type="text" required />
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="f-major">Major</label>
+          <input id="f-major" name="major" type="text" required />
+        </div>
+        <div class="field">
+          <label for="f-year">Year</label>
+          <select id="f-year" name="year_level" required>
+            <option value="" disabled selected>Select</option>
+            <option>Freshman</option>
+            <option>Sophomore</option>
+            <option>Junior</option>
+            <option>Senior</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-committee">Committee preference</label>
+        <select id="f-committee" name="committee_choice" required>
+          <option value="" disabled selected>Select</option>
+          <option>Executive</option>
+          <option>Events & Programs</option>
+          <option>Media</option>
+          <option>Partnerships</option>
+          <option>Finance & Admin</option>
+          <option>HR</option>
+          <option>No preference</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="f-why">Why do you want to join?</label>
+        <textarea id="f-why" name="why_join" rows="3" required></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary" id="applySubmitBtn">Submit application</button>
+      <p class="form-status" id="applyStatus"></p>
+    </form>
+  </div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -313,6 +428,76 @@
       el.style.transform = 'none';
     });
   }
+</script>
+
+<script>
+  // ---------- Apply Now modal + Supabase submit ----------
+  var SUPABASE_URL = 'https://cdkedocfavgkhibqoowh.supabase.co';
+  var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNka2Vkb2NmYXZna2hpYnFvb3doIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk1NDEzMTAsImV4cCI6MjEwNTExNzMxMH0.TzmYK7snjRaRWOXOrHjnUIWuMOKhgGR8JIQ78GPfmxg';
+
+  var backdrop = document.getElementById('applyBackdrop');
+
+  function openApplyModal(){
+    backdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeApplyModal(){
+    backdrop.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  backdrop.addEventListener('click', function(e){
+    if (e.target === backdrop) closeApplyModal();
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeApplyModal();
+  });
+
+  var form = document.getElementById('applyForm');
+  var statusEl = document.getElementById('applyStatus');
+  var submitBtn = document.getElementById('applySubmitBtn');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    submitBtn.disabled = true;
+    statusEl.textContent = 'Submitting…';
+    statusEl.className = 'form-status';
+
+    var data = {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      student_id: form.student_id.value.trim(),
+      major: form.major.value.trim(),
+      year_level: form.year_level.value,
+      committee_choice: form.committee_choice.value,
+      why_join: form.why_join.value.trim()
+    };
+
+    fetch(SUPABASE_URL + '/rest/v1/applications', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify(data)
+    }).then(function(res){
+      if (res.ok) {
+        statusEl.textContent = 'Application sent — thank you!';
+        statusEl.className = 'form-status ok';
+        form.reset();
+        setTimeout(closeApplyModal, 1600);
+      } else {
+        return res.text().then(function(t){ throw new Error(t); });
+      }
+    }).catch(function(err){
+      statusEl.textContent = 'Something went wrong. Please try again.';
+      statusEl.className = 'form-status err';
+      console.error(err);
+    }).finally(function(){
+      submitBtn.disabled = false;
+    });
+  });
 </script>
 
 </body>
