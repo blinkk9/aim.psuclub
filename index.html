@@ -467,6 +467,10 @@
     <input id="f-name" name="name" type="text" required />
   </div>
   <div class="field">
+    <label for="f-phone">Phone number</label>
+    <input id="f-phone" name="phone_number" type="tel" required />
+  </div>
+  <div class="field">
     <label for="f-email">PSU email</label>
     <input id="f-email" name="email" type="email" required />
   </div>
@@ -499,6 +503,10 @@
       <option>HR</option>
       <option>No preference</option>
     </select>
+  </div>
+  <div class="field">
+    <label for="f-experience">Past experience (if any)</label>
+    <textarea id="f-experience" name="past_experience" rows="2"></textarea>
   </div>
   <div class="field">
     <label for="f-why">What will you bring to the club?</label>
@@ -592,13 +600,15 @@
     statusEl.textContent = 'Submitting…';
     statusEl.className = 'form-status';
 
-   var data = {
-  name: form.name.value.trim(),
+  var data = {
+  Name: form.name.value.trim(),
+  phone_number: form.phone_number.value.trim(),
   email: form.email.value.trim(),
   major: form.major.value.trim(),
-  year_level: form.year_level.value,
+  Year_level: form.year_level.value,
   committee_choice: form.committee_choice.value,
-  why_join: form.why_join.value.trim()
+  Past_expierence: form.past_experience.value.trim(),
+  Why_join: form.why_join.value.trim()
 };
 
     fetch(SUPABASE_URL + '/rest/v1/Applications', {
