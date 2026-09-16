@@ -462,57 +462,52 @@
     <p class="modal-sub">Fill this in and we'll follow up with next steps.</p>
 
     <form id="applyForm">
-      <div class="field">
-        <label for="f-name">Full name</label>
-        <input id="f-name" name="name" type="text" required />
-      </div>
-      <div class="field-row">
-        <div class="field">
-          <label for="f-email">PSU email</label>
-          <input id="f-email" name="email" type="email" required />
-        </div>
-        <div class="field">
-          <label for="f-student-id">Student ID</label>
-          <input id="f-student-id" name="student_id" type="text" required />
-        </div>
-      </div>
-      <div class="field-row">
-        <div class="field">
-          <label for="f-major">Major</label>
-          <input id="f-major" name="major" type="text" required />
-        </div>
-        <div class="field">
-          <label for="f-year">Year</label>
-          <select id="f-year" name="year_level" required>
-            <option value="" disabled selected>Select</option>
-            <option>Freshman</option>
-            <option>Sophomore</option>
-            <option>Junior</option>
-            <option>Senior</option>
-          </select>
-        </div>
-      </div>
-      <div class="field">
-        <label for="f-committee">Committee preference</label>
-        <select id="f-committee" name="committee_choice" required>
-          <option value="" disabled selected>Select</option>
-          <option>Executive</option>
-          <option>Events & Programs</option>
-          <option>Media</option>
-          <option>Partnerships</option>
-          <option>Finance & Admin</option>
-          <option>HR</option>
-          <option>No preference</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="f-why">Why do you want to join?</label>
-        <textarea id="f-why" name="why_join" rows="3" required></textarea>
-      </div>
+  <div class="field">
+    <label for="f-name">Full name</label>
+    <input id="f-name" name="name" type="text" required />
+  </div>
+  <div class="field">
+    <label for="f-email">PSU email</label>
+    <input id="f-email" name="email" type="email" required />
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label for="f-major">Major</label>
+      <input id="f-major" name="major" type="text" required />
+    </div>
+    <div class="field">
+      <label for="f-year">Year</label>
+      <select id="f-year" name="year_level" required>
+        <option value="" disabled selected>Select</option>
+        <option>First</option>
+        <option>Second</option>
+        <option>Third</option>
+        <option>Fourth</option>
+        <option>Fifth</option>
+        <option>Sixth+</option>
+      </select>
+    </div>
+  </div>
+  <div class="field">
+    <label for="f-committee">Committee preference</label>
+    <select id="f-committee" name="committee_choice" required>
+      <option value="" disabled selected>Select</option>
+      <option>Events & Programs</option>
+      <option>Media</option>
+      <option>Partnerships</option>
+      <option>Finance & Admin</option>
+      <option>HR</option>
+      <option>No preference</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="f-why">What will you bring to the club?</label>
+    <textarea id="f-why" name="why_join" rows="3" required></textarea>
+  </div>
 
-      <button type="submit" class="btn btn-primary" id="applySubmitBtn">Submit application</button>
-      <p class="form-status" id="applyStatus"></p>
-    </form>
+  <button type="submit" class="btn btn-primary" id="applySubmitBtn">Submit application</button>
+  <p class="form-status" id="applyStatus"></p>
+</form>
   </div>
 </div>
 
@@ -597,15 +592,14 @@
     statusEl.textContent = 'Submitting…';
     statusEl.className = 'form-status';
 
-    var data = {
-      name: form.name.value.trim(),
-      email: form.email.value.trim(),
-      student_id: form.student_id.value.trim(),
-      major: form.major.value.trim(),
-      year_level: form.year_level.value,
-      committee_choice: form.committee_choice.value,
-      why_join: form.why_join.value.trim()
-    };
+   var data = {
+  name: form.name.value.trim(),
+  email: form.email.value.trim(),
+  major: form.major.value.trim(),
+  year_level: form.year_level.value,
+  committee_choice: form.committee_choice.value,
+  why_join: form.why_join.value.trim()
+};
 
     fetch(SUPABASE_URL + '/rest/v1/Applications', {
       method: 'POST',
