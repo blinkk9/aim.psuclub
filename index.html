@@ -308,4 +308,437 @@
 
   .field{ margin-bottom:16px; }
   .field label{
-    display:block; font-family:'Cairo',sans-serif;
+    display:block; font-family:'Cairo',sans-serif; font-weight:600; font-size:0.82rem;
+    margin-bottom:6px; color:var(--fg);
+  }
+  .field input, .field select, .field textarea{
+    width:100%; font-family:'Literata', Georgia, serif; font-size:0.98rem;
+    padding:11px 13px; border-radius:10px; border:1.5px solid var(--border);
+    background:var(--bg); color:var(--fg); resize:vertical;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{
+    outline:none; border-color:var(--accent);
+  }
+  .field-row{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media (max-width:460px){ .field-row{ grid-template-columns:1fr; } }
+
+  .form-status{
+    font-family:'Cairo',sans-serif; font-size:0.88rem; font-weight:600;
+    margin-top:4px; min-height:1.2em;
+  }
+  .form-status.ok{ color:var(--accent); }
+  .form-status.err{ color:var(--accent-2); }
+  .modal .btn-primary{ width:100%; justify-content:center; margin-top:6px; border:none; cursor:pointer; }
+  .modal .btn-primary:disabled{ opacity:0.6; cursor:default; transform:none; }
+
+  /* ---------- Floating back-to-top mark ---------- */
+  .back-to-top{
+    position:fixed; right:22px; bottom:22px; z-index:100;
+    width:52px; height:52px; border-radius:50%;
+    background:var(--card); border:1px solid var(--border);
+    box-shadow:0 10px 26px rgba(15,36,56,0.18);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; text-decoration:none;
+    opacity:0; transform:translateY(12px) scale(0.9);
+    pointer-events:none;
+    transition:opacity .25s ease, transform .25s ease, box-shadow .15s ease;
+  }
+  .back-to-top.show{ opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
+  .back-to-top:hover{ box-shadow:0 14px 32px rgba(15,36,56,0.26); transform:translateY(-2px) scale(1.03); }
+  .back-to-top img{ width:24px; height:auto; display:block; }
+  @media (max-width:560px){
+    .back-to-top{ right:16px; bottom:16px; width:46px; height:46px; }
+    .back-to-top img{ width:21px; }
+  }
+</style>
+
+<header>
+  <div class="wrap navrow">
+    <a class="brandmark" href="#top">
+      <span class="mark-chip"><img class="mark" src="aim-heart-icon.svg" alt="AIM" /></span>
+    </a>
+    <nav class="links">
+      <a href="#about">WHO WE ARE</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+  <section class="hero" style="border-top:none; padding-top:56px;">
+    <p class="eyebrow">Prince Sultan University · Student Club<br class="est-break" /> Est. 2026</p>
+    <img src="aim-logo.png" alt="AIM" class="hero-logo" />
+    <p class="hero-fullname">Alliance In Motion</p>
+    <p class="hero-sub">Where care on campus meets impact beyond it.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#join">Get involved →</a>
+    </div>
+    <div class="hero-strip">
+      <div><div class="hs-num count-up" data-count="17">0</div><div class="hs-label">SDGs in scope</div></div>
+    </div>
+  </section>
+
+</main>
+
+<section class="quotes bleed">
+  <div class="wrap reveal">
+
+    <div class="quote-photo-wrap">
+      <img src="aim-quote-photo.jpg" alt="Historical photo" />
+    </div>
+
+    <div class="quote-block">
+      <div class="quote-mark">&ldquo;</div>
+      <p class="quote-ar arabic">ما يميّز هذه البلاد هو حرص قادتها على فعل الخير والتشجيع عليه</p>
+      <p class="quote-en">"This country is distinguished by the care and encouragement of goodness by its leaders."</p>
+      <p class="quote-attr"><span class="ar">الملك سلمان بن عبدالعزيز آل سعود</span><span class="en">King Salman bin Abdulaziz Al Saud</span></p>
+    </div>
+
+    <div class="quote-divider"></div>
+
+    <div class="quote-block">
+      <div class="quote-mark">&ldquo;</div>
+      <p class="quote-ar arabic">وإنّ ما نقوم به من جهود خيرية هو واجب تمليه علينا عقيدتنا الإسلامية وقيمنا العربية.</p>
+      <p class="quote-en">"And what we carry out of charitable efforts is a duty dictated to us by our Islamic faith and Arab values."</p>
+      <p class="quote-attr"><span class="ar">الأمير سلطان بن عبدالعزيز آل سعود</span><span class="en">Prince Sultan bin Abdulaziz Al Saud</span></p>
+    </div>
+
+  </div>
+</section>
+
+<section id="about" class="bleed">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Who we are</p>
+      <h2>About, vision, and mission.</h2>
+    </div>
+
+    <div class="lang-block reveal">
+      <div class="lang-col en">
+        <h3>About Us</h3>
+        <p>AIM is a student-led club at Prince Sultan University that brings together students who want to make a meaningful difference, both on campus and beyond. We believe giving back goes beyond the university gates — from supporting the people who make our university feel like home to extending our impact wherever it's needed, we create opportunities for students to turn their ideas, energy, and compassion into action. Guided by the UN Sustainable Development Goals, every initiative we take on has a purpose — bringing students together, creating meaningful experiences, and making an impact that lasts.</p>
+      </div>
+      <div class="lang-col ar arabic">
+        <h3>من نحن</h3>
+        <p>تحالف الأثر (AIM) نادٍ طلابي بجامعة الأمير سلطان يقوده الطلاب أنفسهم، يجمع بين من يسعون لإحداث فرق حقيقي، داخل الحرم الجامعي وخارجه. نؤمن بأن العطاء لا يتوقف عند أسوار الجامعة — فمن دعم من يجعلون جامعتنا تشعرنا بالانتماء، إلى مد أثرنا إلى حيث تدعو الحاجة، نخلق الفرص للطلاب لتحويل أفكارهم وطاقتهم وتعاطفهم إلى عمل ملموس. واسترشادًا بأهداف التنمية المستدامة للأمم المتحدة، لكل مبادرة نقوم بها هدف واضح — تجمع الطلاب، وتخلق تجارب ذات معنى، وتترك أثرًا يدوم.</p>
+      </div>
+    </div>
+
+    <div class="lang-block reveal">
+      <div class="lang-col en">
+        <h3>Vision</h3>
+        <p>We envision Prince Sultan University students uniting to make giving back a habit, not an event — creating meaningful, lasting impact on campus and beyond. That's the culture AIM inspires to build.</p>
+      </div>
+      <div class="lang-col ar arabic">
+        <h3>رؤيتنا</h3>
+        <p>نتطلع إلى أن يتحد طلاب جامعة الأمير سلطان لجعل العطاء عادة لا مناسبة عابرة — مما يخلق أثرًا حقيقيًا ودائمًا داخل الحرم الجامعي وخارجه. هذه هي الثقافة التي يسعى تحالف الأثر إلى بنائها.</p>
+      </div>
+    </div>
+
+    <div class="lang-block reveal">
+      <div class="lang-col en">
+        <h3>Mission</h3>
+        <p>Our mission is to create a community and opportunities for PSU students to take part in service, both on campus and beyond. Along the way, students plan, organize, and lead every initiative themselves — building the skills to turn good intentions into action that lasts, through regular work aligned with the UN Sustainable Development Goals.</p>
+      </div>
+      <div class="lang-col ar arabic">
+        <h3>رسالتنا</h3>
+        <p>رسالتنا هي بناء مجتمع وفرص لطلاب جامعة الأمير سلطان للمشاركة في العمل التطوعي، داخل الحرم الجامعي وخارجه. وفي هذا المسار، يخطط الطلاب لكل مبادرة وينظمونها ويقودونها بأنفسهم — مكتسبين المهارات التي تُحوّل النوايا الطيبة إلى عمل مستمر، من خلال عمل منتظم يتماشى مع أهداف التنمية المستدامة للأمم المتحدة.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="impact bleed">
+  <div class="wrap reveal">
+    <p class="eyebrow">Our reach</p>
+    <h2>Every initiative maps to a global goal.</h2>
+    <p>From campus welfare to community outreach, each project we run ties back to the UN Sustainable Development Goals — so the work adds up to something bigger than one event.</p>
+    <div class="impact-num count-up" data-count="17">0</div>
+    <div class="impact-label">SDGs in scope</div>
+  </div>
+</section>
+
+<main class="wrap">
+  <section id="join" style="padding-block:56px 70px;">
+    <div class="join reveal">
+      <div>
+        <p class="eyebrow" style="color:var(--accent-2);">Get involved</p>
+        <h2>Join us to aim for change, to put it in motion.</h2>
+        <div class="hero-actions">
+          <button type="button" class="btn btn-primary" onclick="openApplyModal()">Apply Now →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <span class="fmark"><img src="aim-heart-icon.svg" alt="" /> AIM</span>
+  <span>A Prince Sultan University student club · التوعية والمسؤولية المجتمعية</span>
+</footer>
+
+<div class="modal-backdrop" id="applyBackdrop">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="applyTitle">
+    <div class="modal-head">
+      <div>
+        <p class="eyebrow" style="margin-bottom:4px;">Apply Now</p>
+        <h2 id="applyTitle">Join AIM</h2>
+      </div>
+      <button type="button" class="modal-close" onclick="closeApplyModal()" aria-label="Close">&times;</button>
+    </div>
+    <p class="modal-sub">Fill this in and we'll follow up with next steps.</p>
+
+    <form id="applyForm">
+      <div class="field">
+        <label for="f-name">Full name</label>
+        <input id="f-name" name="name" type="text" required />
+      </div>
+      <div class="field">
+        <label for="f-phone">Phone number</label>
+        <input id="f-phone" name="phone_number" type="tel" required />
+      </div>
+      <div class="field">
+        <label for="f-email">PSU email</label>
+        <input id="f-email" name="email" type="email" required />
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="f-college">College</label>
+          <select id="f-college" required>
+            <option value="" disabled selected>Select</option>
+            <option>College of Computer and Information Sciences</option>
+            <option>College of Engineering</option>
+            <option>College of Business Administration</option>
+            <option>College of Architecture and Design</option>
+            <option>College of Humanities and Sciences</option>
+            <option>College of Law</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-major">Major</label>
+          <select id="f-major" name="major" required disabled>
+            <option value="" disabled selected>Select college first</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="f-year">Year</label>
+          <select id="f-year" name="year_level" required>
+            <option value="" disabled selected>Select</option>
+            <option>First</option>
+            <option>Second</option>
+            <option>Third</option>
+            <option>Fourth</option>
+            <option>Fifth</option>
+            <option>Sixth+</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-committee">Committee preference</label>
+          <select id="f-committee" name="committee_choice" required>
+            <option value="" disabled selected>Select</option>
+            <option>Events & Programs</option>
+            <option>Media</option>
+            <option>Partnerships</option>
+            <option>Finance & Admin</option>
+            <option>HR</option>
+            <option>No preference</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-experience">Past experience (if any)</label>
+        <textarea id="f-experience" name="past_experience" rows="2"></textarea>
+      </div>
+      <div class="field">
+        <label for="f-why">What will you bring to the club?</label>
+        <textarea id="f-why" name="why_join" rows="3" required></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary" id="applySubmitBtn">Submit application</button>
+      <p class="form-status" id="applyStatus"></p>
+    </form>
+  </div>
+</div>
+
+<a href="#top" class="back-to-top" id="backToTop" aria-label="Back to top">
+  <img src="aim-heart-icon.svg" alt="" />
+</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (window.gsap && window.ScrollTrigger && !prefersReduced) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Scroll reveal — stagger multi-item sections (e.g. the About lang-blocks)
+    // so they cascade in one after another instead of all firing at once.
+    document.querySelectorAll('#about .lang-block').forEach(function (el, i) {
+      el.classList.add('reveal');
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        delay: i * 0.12,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+      });
+    });
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      if (el.closest('#about')) return; // handled above with stagger
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          once: true
+        }
+      });
+    });
+
+    // Count-up numbers (SDG stat) when they scroll into view
+    document.querySelectorAll('.count-up').forEach(function (el) {
+      var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+      var counter = { val: 0 };
+      gsap.to(counter, {
+        val: target,
+        duration: 1.4,
+        ease: 'power1.out',
+        scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+        onUpdate: function () { el.textContent = Math.round(counter.val); }
+      });
+    });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      el.style.opacity = 1;
+      el.style.transform = 'none';
+    });
+    document.querySelectorAll('.count-up').forEach(function (el) {
+      el.textContent = el.getAttribute('data-count');
+    });
+  }
+</script>
+
+<script>
+  // ---------- Apply Now modal + Supabase submit ----------
+  var SUPABASE_URL = 'https://cdkedocfavgkhibqoowh.supabase.co';
+  var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNka2Vkb2NmYXZna2hpYnFvb3doIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk1NDEzMTAsImV4cCI6MjEwNTExNzMxMH0.TzmYK7snjRaRWOXOrHjnUIWuMOKhgGR8JIQ78GPfmxg';
+
+  var backdrop = document.getElementById('applyBackdrop');
+
+  function openApplyModal(){
+    backdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeApplyModal(){
+    backdrop.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  backdrop.addEventListener('click', function(e){
+    if (e.target === backdrop) closeApplyModal();
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeApplyModal();
+  });
+
+  // ---------- Floating back-to-top heart ----------
+  var backToTop = document.getElementById('backToTop');
+  backToTop.addEventListener('click', function(e){
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  function toggleBackToTop(){
+    // shows once you've scrolled a bit past the hero, and stays visible
+    // (no hide-near-footer logic) all the way down to the last section
+    if (window.scrollY > 320) {
+      backToTop.classList.add('show');
+    } else {
+      backToTop.classList.remove('show');
+    }
+  }
+  window.addEventListener('scroll', toggleBackToTop, { passive: true });
+  toggleBackToTop();
+
+  // ---------- College -> Major cascading select ----------
+  var MAJORS_BY_COLLEGE = {
+    'College of Computer and Information Sciences': ['Computer Science', 'Information Systems', 'Software Engineering'],
+    'College of Engineering': ['Civil and Environmental Engineering', 'Electrical Engineering', 'Production & Manufacturing Engineering Management', 'Communications & Networks Engineering', 'Construction Engineering'],
+    'College of Business Administration': ['Aviation Management', 'Accounting', 'Marketing', 'Finance'],
+    'College of Architecture and Design': ['Architecture', 'Interior Design'],
+    'College of Humanities and Sciences': ['Translation', 'Applied Linguistics'],
+    'College of Law': ['Law']
+  };
+  var collegeSelect = document.getElementById('f-college');
+  var majorSelect = document.getElementById('f-major');
+  collegeSelect.addEventListener('change', function(){
+    var majors = MAJORS_BY_COLLEGE[collegeSelect.value] || [];
+    majorSelect.innerHTML = '';
+    var placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    placeholder.textContent = 'Select';
+    majorSelect.appendChild(placeholder);
+    majors.forEach(function(m){
+      var opt = document.createElement('option');
+      opt.textContent = m;
+      majorSelect.appendChild(opt);
+    });
+    majorSelect.disabled = majors.length === 0;
+  });
+
+  var form = document.getElementById('applyForm');
+  var statusEl = document.getElementById('applyStatus');
+  var submitBtn = document.getElementById('applySubmitBtn');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    submitBtn.disabled = true;
+    statusEl.textContent = 'Submitting…';
+    statusEl.className = 'form-status';
+
+    var data = {
+      Name: form.name.value.trim(),
+      phone_number: form.phone_number.value.trim(),
+      email: form.email.value.trim(),
+      major: form.major.value.trim(),
+      Year_level: form.year_level.value,
+      committee_choice: form.committee_choice.value,
+      Past_expierence: form.past_experience.value.trim(),
+      Why_join: form.why_join.value.trim()
+    };
+
+    fetch(SUPABASE_URL + '/rest/v1/Applications', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify(data)
+    }).then(function(res){
+      if (res.ok) {
+        statusEl.textContent = 'Application sent — thank you!';
+        statusEl.className = 'form-status ok';
+        form.reset();
+        setTimeout(closeApplyModal, 1600);
+      } else {
+        return res.text().then(function(t){ throw new Error('HTTP ' + res.status + ': ' + t); });
+      }
+    }).catch(function(err){
+      statusEl.textContent = err.message; // TEMP: shows the real error so we can diagnose it
+      statusEl.className = 'form-status err';
+      console.error(err);
+    }).finally(function(){
+      submitBtn.disabled = false;
+    });
+  });
+</script>
+
+</html>
