@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>AIM</title>
 <link rel="icon" type="image/png" href="aim-heart-icon.png" />
 <style>
@@ -153,15 +153,15 @@
     0%, 100%{ transform:translateY(0); }
     50%{ transform:translateY(-8px); }
   }
-  .heart-anim{
-    height:clamp(120px, 22vw, 220px);
+  /* ---------- AIM wordmark: real vector logo, assembling on load ---------- */
+  .wm-svg{
+    height:clamp(90px, 15vw, 150px);
     width:auto;
     display:block;
     margin-inline:auto;
-    animation:float 5s ease-in-out infinite;
     overflow:visible;
   }
-  .heart-anim path{ transform-box:fill-box; transform-origin:center; }
+  .wm-svg path, .wm-svg circle{ transform-box:fill-box; transform-origin:center; }
   .hero-fullname{
     font-family:'Cairo',sans-serif; font-weight:600; letter-spacing:0.16em;
     text-transform:uppercase;
@@ -389,15 +389,26 @@
 
   <section class="hero" style="border-top:none; padding-top:56px;">
     <p class="eyebrow">Prince Sultan University · Student Club<br class="est-break" /> Est. 2026</p>
-    <svg class="heart-anim" id="heartAnim" viewBox="354 255 572 514" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AIM heart mark">
-      <path class="hp" data-fly="-90,-60,-18" fill="#f15b50" d="M646.09,368.86c26.11,30.99,42.83,70.83,58.27,108.31,2.77,5.57,3.11,10.5,1.03,14.79-3.43.09-8.39,2.24-11.92,4.72-4.42,3.1-2.75,10.73,1.72,13.64,5.6,3.64,12.93,4.44,18.92,4.46,3.91,3.6,6.74,10.12,8.35,15.21l-10.84,2.01c-18.99-1.83-36.92-.47-35,10.69,2.54,14.85,27.08,9.31,49.38,8.33,6.29-.89,6.16,11.13.17,12.25-17.17-.49-34.58,2.99-33.15,13.29,1.55,11.18,23.26,9.17,41.55,4.84,4.77,2.7,3.66,10.21-1.45,11.83-4.71,2.28-9.67,7.87-6.1,13.38,5.11,7.89,13.85,3.99,20.39,3.3,3.39,5.9-1.5,7.42-7.26,8.03-3.42,29.94-18.12,57.76-35.45,82.1-6.07,4.94-8.67,8.6-7.81,10.97l-10.47,8.05-42.48,25.1c-10.13-4.26-18.75-9.56-28.1-16.08-61.5-42.86-115.56-93.13-164.39-153.42l59.13,8.47c27.37,3.92,55.2-1.17,81.74-8.59,4.75-1.33,4.28-8.94,2.65-11.45-2.17-3.35-6.58-5.12-11.73-4.43l-33.46,4.51c-3.97.53-7.58-2.73-8.48-5.51-2.81-8.67,15.66-5.49,38.62-10.18l21.17-4.32c6.45-1.32,14.76-2.79,17.64-10.07,2.05-5.2-3.09-9.15-5.99-10.89-5.05-3.04-8.8.92-13.48,1.78l-28.58,5.23-21.35,2.47c-1.77.2-4.63-3.8-4.03-5.25.45-1.09,1.5-3.82,3.62-4.11,28.12-3.91,88.24-13.8,78.95-32.7-2.06-4.2-7.29-5.82-12.91-4.09-22.24,6.85-46.38,11.6-69.06,14.82-2.47-3.71.35-7.58,4.09-8.54,21.52-5.54,57.28-14.55,58.97-26.58.64-4.51-1.67-10.82-7.19-9.27l-33.59,9.48-17.01,4.06c-7.28,1.74-13.71,2.3-20.88,4.48-4.19,1.27-10.8-2.09-15.06-2.73-19.26-2.87,9.73-24.04,17.43-42.43,2.15-5.15.18-12.54-3.79-14.15-2.86-1.16-9.09-1.44-12.57,1.9-18.71,17.99-36.71,36.66-59.76,49.12-23.93,12.93-50.85,15.26-63.66-6.71-6.38-10.94-9.27-22.33-11.65-34.59-14.29-73.6,37.62-140.97,112.97-144.36,61.12-2.75,112.55,38.64,147.58,87.76,1.08,1.51,3.41,1.6,4.33,1.12Z"/>
-      <path class="hp" data-fly="95,-70,22" fill="#d9a441" d="M705.39,491.96c-3.29-3.69-3.34-9.57-5.32-14.22l-14.43-33.79c-8.12-19.01-16.86-36.71-28.92-53.45-4.22-5.86-11.74-13.87-10.63-21.64,9.63-17.31,23.83-32.63,39.11-46.83,31.59-29.34,81.35-48.3,122.03-39.53,46.24,9.97,82.94,46.93,91.93,92.74,8.06,41.04-8.38,95.97-48.69,94.71-6.71-.21-16.03-3.84-22.2-6.71-28.18-13.12-44.02-38.17-53.66-38.54-4.56-.18-8.42,4.92-9.56,8.01-1.45,3.94-.65,9.87,2.37,13.59l16.96,20.93c2.58,3.18,3.74,6.25,2.77,10.18-2,8.12-20.07,12.94-32.31,13.26l-49.45,1.3Z"/>
-      <path class="hp" data-fly="40,90,-25" fill="#d9a441" d="M696.88,711c-3.99,1.13-5.41-3.6-1.4-3.66l17.55-29.18c4.4-7.32,9.81-13.36,12.24-20.83l5.88-18.1c2.9-8.94,5.71-16.73,4.49-25.7,6.14.77,10.12-.66,11.76-3.63,27.94-2.92,52.7-14.56,81.22-24.49-39.53,48.7-84.17,89.01-131.74,125.59Z"/>
-      <path class="hp" data-fly="-30,-70,40" fill="#e37e26" d="M722.47,529.98c-6.77-1.44-10.18-8.72-8.35-15.21l43.94.18c2.42,0,3,7.23,1.79,9.25-.93,1.56-5.93.19-7.91,1.13-10.3,4.89-19.72,2.85-29.46,4.65Z"/>
-      <path class="hp" data-fly="55,40,-35" fill="#e58537" d="M733.11,593.22c-.66-4.28-.01-8.09,1.45-11.83l32.07-7.6c3.55-.84,6.21.61,6.5,3,.19,1.59.11,5-2.11,5.69l-24.17,7.51c-5.09,1.58-9.13,3.68-13.74,3.23Z"/>
-      <path class="hp" data-fly="-55,55,30" fill="#eb8923" d="M726.17,563.26l-.17-12.25c21.05-.93,35.89-10.71,41.79-.11-9.07,6.69-34.92,12.55-41.62,12.36Z"/>
-    </svg>
-    <h1 class="hero-name">AIM</h1>
+    <h1 style="margin:0;">
+      <svg class="wm-svg" id="aimWordmark" viewBox="364 372 554 268" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AIM — Alliance In Motion">
+        <g class="wm-a" data-fly="-90,0,0">
+          <path fill="#164a70" d="M494.37,579.05l-64.86.07c-1.97,0-4.91,1.78-5.68,3.51l-12.99,29.49c-1.14,2.59-1.81,5.1-3.77,7.35-5.87,6.76-16.66,7.69-23.47,1.93-5.57-4.71-5.96-11.53-3.14-17.8l37.51-83.35,9.7-21.52,13.2-29.61c2.78-6.23,7.04-10.85,13.68-12.81,9.92-2.93,22.46.4,26.3,9.03l14.15,31.84,8.92,20.6,38.77,88.1c1.44,3.27.84,7.7-.65,10.68-2.68,5.34-7.97,8.4-13.61,8.54-5.33.13-11.81-2.41-14.11-7.67l-13.76-31.43c-1.32-3.02-2.56-5.67-6.19-6.96Z"/>
+          <path fill="#f3e1bd" d="M477.62,546.26h-33.44c-2.11-.01-4.2-1.33-4.92-2.5-1.11-1.82-.73-3.67.14-5.36l2.61-5.07,15.93-32.11c.55-1.11,1.9-1.68,2.87-1.85s2.64.17,3.18,1.26l15.15,30.44c1.59,3.19,3.51,6.08,4.37,9.46.81,3.19-2.37,5.72-5.91,5.72Z"/>
+        </g>
+        <circle class="wm-dot" data-fly="0,-45,0" fill="#f15b50" cx="638" cy="411.19" r="24.13"/>
+        <path class="wm-stem" data-fly="0,-30,0" fill="#159da6" d="M663.17,466.7c-10.22,1.91-20.08,8.68-26.64,16.99-7.36-8.12-15.07-14.76-26.29-17.17,2.01-12.46,11.46-22.39,24.1-23.8,13.81-1.54,26.92,9.64,28.82,23.98Z"/>
+        <path class="wm-core" data-fly="-60,15,-14" fill="#f15b50" d="M637.13,492.68c6.39,7.58,10.48,17.33,14.26,26.5.68,1.36.76,2.57.25,3.62-.84.02-2.05.55-2.92,1.15-1.08.76-.67,2.63.42,3.34,1.37.89,3.16,1.09,4.63,1.09.96.88,1.65,2.48,2.04,3.72l-2.65.49c-4.64-.45-9.03-.12-8.56,2.62.62,3.63,6.62,2.28,12.08,2.04,1.54-.22,1.51,2.72.04,3-4.2-.12-8.46.73-8.11,3.25.38,2.73,5.69,2.24,10.17,1.18,1.17.66.9,2.5-.36,2.89-1.15.56-2.37,1.92-1.49,3.27,1.25,1.93,3.39.98,4.99.81.83,1.44-.37,1.82-1.78,1.96-.84,7.33-4.43,14.13-8.67,20.09-1.48,1.21-2.12,2.1-1.91,2.68l-2.56,1.97-10.39,6.14c-2.48-1.04-4.59-2.34-6.87-3.93-15.05-10.49-28.27-22.78-40.22-37.53l14.47,2.07c6.7.96,13.5-.29,20-2.1,1.16-.33,1.05-2.19.65-2.8-.53-.82-1.61-1.25-2.87-1.08l-8.19,1.1c-.97.13-1.85-.67-2.08-1.35-.69-2.12,3.83-1.34,9.45-2.49l5.18-1.06c1.58-.32,3.61-.68,4.32-2.46.5-1.27-.76-2.24-1.47-2.66-1.24-.74-2.15.23-3.3.44l-6.99,1.28-5.22.6c-.43.05-1.13-.93-.99-1.29.11-.27.37-.93.89-1.01,6.88-.96,21.59-3.38,19.31-8-.5-1.03-1.78-1.43-3.16-1-5.44,1.68-11.35,2.84-16.9,3.63-.6-.91.09-1.85,1-2.09,5.27-1.35,14.01-3.56,14.43-6.5.16-1.1-.41-2.65-1.76-2.27l-8.22,2.32-4.16.99c-1.78.43-3.36.56-5.11,1.09-1.02.31-2.64-.51-3.68-.67-4.71-.7,2.38-5.88,4.26-10.38.53-1.26.04-3.07-.93-3.46-.7-.28-2.22-.35-3.07.46-4.58,4.4-8.98,8.97-14.62,12.02s-12.44,3.73-15.57-1.64c-1.56-2.68-2.27-5.46-2.85-8.46-3.5-18,9.2-34.49,27.64-35.32,14.95-.67,27.53,9.45,36.11,21.47.26.37.84.39,1.06.27Z"/>
+        <g class="wm-gold" data-fly="60,15,14">
+          <path fill="#d9a441" d="M651.55,522.68c-.8-.9-.82-2.34-1.3-3.48l-3.53-8.27c-1.99-4.65-4.12-8.98-7.07-13.08-1.03-1.43-2.87-3.39-2.6-5.29,2.36-4.23,5.83-7.98,9.57-11.46,7.73-7.18,19.9-11.82,29.85-9.67,11.31,2.44,20.29,11.48,22.49,22.69,1.97,10.04-2.05,23.48-11.91,23.17-1.64-.05-3.92-.94-5.43-1.64-6.89-3.21-10.77-9.34-13.13-9.43-1.11-.04-2.06,1.2-2.34,1.96-.36.96-.16,2.41.58,3.32l4.15,5.12c.63.78.91,1.53.68,2.49-.49,1.99-4.91,3.16-7.9,3.24l-12.1.32Z"/>
+          <path fill="#d9a441" d="M649.56,576.39c-.97.28-1.32-.88-.34-.9l4.29-7.14c1.08-1.79,2.4-3.27,2.99-5.1l1.44-4.43c.71-2.19,1.4-4.09,1.1-6.29,1.5.19,2.47-.16,2.88-.89,6.84-.71,12.89-3.56,19.87-5.99-9.67,11.91-20.59,21.78-32.23,30.72Z"/>
+          <path fill="#d9a441" d="M655.82,532.1c-1.66-.35-2.49-2.13-2.04-3.72l10.75.04c.59,0,.73,1.77.44,2.26-.23.38-1.45.05-1.94.28-2.52,1.2-4.82.7-7.21,1.14Z"/>
+          <path fill="#d9a441" d="M658.42,547.57c-.16-1.05,0-1.98.36-2.89l7.85-1.86c.87-.21,1.52.15,1.59.73.05.39.03,1.22-.52,1.39l-5.91,1.84c-1.24.39-2.23.9-3.36.79Z"/>
+          <path fill="#d9a441" d="M656.72,540.24l-.04-3c5.15-.23,8.78-2.62,10.22-.03-2.22,1.64-8.54,3.07-10.18,3.02Z"/>
+        </g>
+        <path class="wm-base" data-fly="0,35,0" fill="#164a70" d="M663.37,596.57l-.78,7.61c-2.68,8.27-8.26,14.78-16.58,17.47-11.71,3.78-25.05.58-32.23-9.4-2.59-3.6-4.37-8.02-4.38-12.26l-.07-27.48,10.3,7.95,11.51,7.97c3.35,2.32,7.21,2.29,10.67.07,7.5-4.79,14.35-10.03,21.6-15.71l-.04,23.77Z"/>
+        <path class="wm-m" data-fly="90,0,0" fill="#159da6" d="M894.66,619.81c-5.88,4.56-14.45,3.89-19.95-1.19-3.39-3.13-5.06-6.63-5.47-11.33l-8.6-97.95c-1.87-.17-2.22,1.31-3.01,2.44l-26.35,37.6c-2.63,3.75-6.29,6.26-10.49,6.61-4.39.37-9.28-.84-12.04-4.62l-29.72-40.61c-.46-.63-.74-.91-1.41-.67-.49.17-.66.67-.73,1.41l-3.07,34.37-4.79,56.35-.43,5.14c-.74,8.79-6.38,16.28-15.71,16.75-4.18.22-8.13-1.38-11.12-4.06-3.46-3.11-5.6-7.7-5.22-12.62l.9-11.47,6.03-77.05,4.29-55.22c.55-7.14,6.16-12.93,12.9-14.35,6.38-1.34,13.28.66,17.06,6l41.81,59.02,17.22-24.55,19.01-27.12,7.29-10.07c3.69-3.99,9.45-5.52,14.46-4.36,8.74,2.01,12.47,9.46,13.11,17.81l10.55,138.16c.48,6.32-1.4,11.58-6.53,15.56Z"/>
+      </svg>
+    </h1>
     <p class="hero-fullname">Alliance In Motion</p>
     <p class="hero-sub">Where care on campus meets impact beyond it.</p>
     <div class="hero-actions">
@@ -601,41 +612,60 @@
 <script>
   var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ---------- Heart mark: pieces fly together, then gently pulse apart/together forever ----------
+  // ---------- AIM wordmark: assembles on load — A and M fly in from the sides, the "I" builds itself (dot drops, stem grows, heart's two halves converge, base settles) ----------
   (function () {
-    var pieces = document.querySelectorAll('#heartAnim .hp');
+    var wm = document.getElementById('aimWordmark');
+    if (!wm) return;
+
+    var a = wm.querySelector('.wm-a');
+    var dot = wm.querySelector('.wm-dot');
+    var stem = wm.querySelector('.wm-stem');
+    var core = wm.querySelector('.wm-core');
+    var gold = wm.querySelector('.wm-gold'); // moves as ONE unit — the gold half + all its hand/finger detail lines travel together
+    var base = wm.querySelector('.wm-base');
+    var m = wm.querySelector('.wm-m');
+    var pieces = [a, dot, stem, core, gold, base, m].filter(Boolean);
     if (!pieces.length) return;
 
+    function flyOf(el) {
+      return (el.getAttribute('data-fly') || '0,0,0').split(',').map(Number);
+    }
+
     if (!window.gsap || prefersReduced) {
-      pieces.forEach(function (p) { p.style.opacity = 1; });
+      pieces.forEach(function (el) { el.style.opacity = 1; el.style.transform = 'none'; });
       return;
     }
 
-    var flyFrom = [];
-    pieces.forEach(function (p) {
-      var parts = (p.getAttribute('data-fly') || '0,0,0').split(',').map(Number);
-      flyFrom.push({ x: parts[0], y: parts[1], rotation: parts[2] });
-      gsap.set(p, { x: parts[0], y: parts[1], rotation: parts[2], opacity: 0, transformOrigin: '50% 50%' });
+    pieces.forEach(function (el) {
+      var f = flyOf(el);
+      gsap.set(el, { x: f[0], y: f[1], rotation: f[2], opacity: 0 });
     });
 
-    var tl = gsap.timeline({ delay: 0.4 });
-    tl.to(pieces, {
+    var tl = gsap.timeline({ delay: 0.35 });
+
+    // 1. A and M fly in from opposite sides first, framing the word
+    tl.to([a, m], {
       x: 0, y: 0, rotation: 0, opacity: 1,
-      duration: 0.9, ease: 'back.out(1.6)', stagger: 0.09
-    }).add(function () {
-      // gentle infinite stack / unstack breathing, unique amplitude per piece
-      pieces.forEach(function (p, i) {
-        var from = flyFrom[i];
-        var amp = 0.16; // how far it drifts apart on each breath, relative to its fly-in distance
-        gsap.to(p, {
-          x: from.x * amp,
-          y: from.y * amp,
-          rotation: from.rotation * amp,
-          duration: 2.4 + i * 0.15,
-          ease: 'sine.inOut',
-          yoyo: true,
-          repeat: -1,
-          delay: i * 0.12
+      duration: 0.7, ease: 'back.out(1.4)', stagger: 0.08
+    });
+    // 2. the dot drops into place — the "I" begins from nothing
+    tl.to(dot, { x: 0, y: 0, rotation: 0, opacity: 1, duration: 0.4, ease: 'back.out(2)' }, '-=0.15');
+    // 3. the stem grows down from it
+    tl.to(stem, { x: 0, y: 0, rotation: 0, opacity: 1, duration: 0.35, ease: 'power2.out' }, '-=0.05');
+    // 4. a beat, then the heart's two halves (core + gold, each its own rigid unit) converge to meet in the middle
+    tl.to([core, gold], {
+      x: 0, y: 0, rotation: 0, opacity: 1,
+      duration: 0.75, ease: 'back.out(1.5)', stagger: 0.06
+    }, '+=0.15');
+    // 5. the base settles underneath, finishing the "I"
+    tl.to(base, { x: 0, y: 0, rotation: 0, opacity: 1, duration: 0.3, ease: 'power2.out' }, '-=0.1');
+    // 6. gentle infinite breathing — just the heart (core + gold), everything else stays put
+    tl.add(function () {
+      [core, gold].forEach(function (el) {
+        var f = flyOf(el);
+        gsap.to(el, {
+          x: f[0] * 0.14, y: f[1] * 0.14, rotation: f[2] * 0.14,
+          duration: 2.6, ease: 'sine.inOut', yoyo: true, repeat: -1
         });
       });
     });
