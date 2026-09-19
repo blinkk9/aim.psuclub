@@ -161,18 +161,18 @@
     margin-inline:auto;
     overflow:visible;
   }
-  @keyframes heartbeat{
-    0%, 100%{ transform:scale(1); }
-    14%{ transform:scale(1.1); }
-    28%{ transform:scale(1); }
-    42%{ transform:scale(1.1); }
-    70%{ transform:scale(1); }
-  }
-  .wm-heart{
-    transform-box:fill-box;
-    transform-origin:center;
-    animation:heartbeat 2.6s ease-in-out infinite;
-  }
+@keyframes heartbeat{
+  0%, 100%{ transform:scale(1); }
+  14%{ transform:scale(1.05); }
+  28%{ transform:scale(1); }
+  42%{ transform:scale(1.05); }
+  70%{ transform:scale(1); }
+}
+.wm-heart{
+  transform-box:fill-box;
+  transform-origin:center;
+  animation:heartbeat 3.5s ease-in-out infinite;
+}
   @media (prefers-reduced-motion:reduce){ .wm-heart{ animation:none; } }
   .hero-fullname{
     font-family:'Cairo',sans-serif; font-weight:600; letter-spacing:0.16em;
